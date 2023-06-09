@@ -1,0 +1,32 @@
+<div class="bajo_contrato">
+  <form action="{{url_for('contratos.aceptar_contrato',idminuta=minuta.idminuta)}}" method="POST" enctype="multipart/form-data">   
+    <div class="caja_boton">
+      <button class="boton">ACEPTAR CONTRATO</button>  
+    </div>
+
+    <div class="caja_ingresos">
+      <div class="ingresar_firma">
+        <label for="image">SUBA SU FIRMA:</label>
+        <input
+          type="file"
+          name="firma"
+          accept="firma/png"
+          class="form-control-file"
+        />
+      </div>
+  
+      <div class="ingresar_huella">
+        <label for="image">SUBA SU HUELLA:</label>
+        <input
+          type="file"
+          name="huella"
+          accept="huella/png"
+          class="form-control-file"
+        />
+      </div>
+
+    </div>
+    
+    
+  </form>
+</div>

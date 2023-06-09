@@ -1,0 +1,9 @@
+<div class="ingreso_usuario">
+    <p class="titulo">
+        CONTRATISTA: {{codigo}}
+    </p>
+    <form action="{{url_for('contratos.contratos_contratista',codigo=codigo)}}" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-dark btn-sm rounded-0">CONTRATOS</button>
+    </form>
+</div>
+

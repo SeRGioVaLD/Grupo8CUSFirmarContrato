@@ -1,0 +1,24 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-info alert-dismissible fade show {% if message == 'CONTRATO FIRMADO CORRECTAMENTE' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+        {{ message }}
+        {% if message == 'CONTRATO FIRMADO CORRECTAMENTE' %}
+          <button style="background: rgb(153, 230, 146)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {% else %}
+          <button style="background: rgb(206, 82, 33)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<script>
+  setTimeout(function() {
+    var alertElement = document.querySelector('.alert');
+    var closeButton = alertElement.querySelector('.btn-close');
+    closeButton.click();
+  }, 3000);
+</script>
+
+

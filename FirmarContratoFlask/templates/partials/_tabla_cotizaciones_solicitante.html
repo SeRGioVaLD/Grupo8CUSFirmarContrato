@@ -1,0 +1,46 @@
+<div class = "caja_tabla_util">
+    <table class="tabla_cotizaciones_solicitante">
+        <tr class="tabla_head">
+            <th class="col_cab1">
+                ID
+            </th>
+            <th class="col_cab1">
+                CONTRATISTA
+            </th>
+            <th class="col_cab1">
+                FECHA
+            </th>
+            <th class="col_cab1">
+                IMPORTE
+            </th>
+            <th class="col_cab1">
+                CONTRATO
+            </th>
+        </tr>
+        {% for cotizacion in cotizaciones %}
+            <tr class="tabla_row " >
+                <td class="col_row1">
+                    {{cotizacion.id_solicitud}}
+                </td>
+                <td class="col_row1">
+                    {{cotizacion.id_personal}}
+                </td>
+                <td class="col_row1">
+                    {{cotizacion.fecha_cotizacion}}
+                </td>
+                <td class="col_row1">
+                    {{cotizacion.importe}}
+                </td>
+                <td class="col_row2">
+                    <form 
+                        action="{{url_for('contratos.crear_contrato',id_solicitud = cotizacion.id_solicitud,codigo=codigo,id_personal=cotizacion.id_personal)}}" 
+                        method="POST" 
+                        style="display: inline;">
+                        <button type="submit" class="btn btn-dark btn-sm rounded-0">CREAR</button>
+                    </form>
+                </td>
+            </tr> 
+        {% endfor %}
+    </table>
+</div>
+   
