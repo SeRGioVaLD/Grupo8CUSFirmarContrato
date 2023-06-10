@@ -34,6 +34,7 @@ input[readonly] {
 }
 
 
+
 .titulo{
     font-size: 35px;
     font-weight: bold;
@@ -79,6 +80,25 @@ input[readonly] {
     text-align: center;
 }
 
+.tabla_head{
+    background-color: #1560bd;
+    color: aliceblue;
+}
+
+.tabla_cotizaciones_solicitante{
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.tabla_contratos_solicitante{
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.tabla_contratos_contratista{
+    width: 100%;
+    background-color: aliceblue;
+}
 
 .alert-info{
     position: relative;
@@ -133,6 +153,15 @@ input[readonly] {
     font-weight: bold;
     border: 2px solid black;
     border-radius: 5px;
+}   
+
+.navbar {
+    background-color: #1560bd;
+    font-weight: bold;
+}
+
+.btn{
+    background-color: #1560bd;
 }
 
 
