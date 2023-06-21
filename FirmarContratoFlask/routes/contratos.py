@@ -61,16 +61,16 @@ def pagina_contratista(codigo):
         codigo = codigo)  
 
 
-@contratos.route('/cotizaciones_solicitante/<codigo>', methods=['GET','POST'])
+@contratos.route('/cotizaciones_solicitante/<codigo>', methods=['POST'])
 def cotizaciones_solicitante(codigo):
-    if request.method == 'POST' or request.method == 'GET':
-        id_solicitante = codigo
-        solicitudes = Solicitud.query.filter(Solicitud.id_solicitante == int(id_solicitante)).all()
+    if request.method == 'POST':
+        id_solicitante = int(codigo)
+        solicitudes = Solicitud.query.filter_by(Solicitud.id_solicitante == id_solicitante).all()
         cotizaciones = []
         for solicitud in solicitudes:
-            cotizacion = Solicitud_Cotizacion.query.filter_by(id_solicitud=solicitud.id_solicitud).first()
+            cotizacion = Solicitud_Cotizacion.query.filter_by(Solicitud_Cotizacion.id_solicitud == solicitud.id_solicitud).all()
             if cotizacion :
-                contrato = Contrato.query.filter_by(id_solicitud=solicitud.id_solicitud).first()
+                contrato = Contrato.query.filter_by(Contrato.id_solicitud == solicitud.id_solicitud).all()
                 if not contrato:
                     cotizaciones.append(cotizacion)   
         return render_template(
@@ -82,8 +82,8 @@ def cotizaciones_solicitante(codigo):
 @contratos.route('/contratos_solicitante/<codigo>', methods=['POST'])
 def contratos_solicitante(codigo):
     if request.method == 'POST':
-        id_solicitante = codigo
-        contratos = Contrato.query.filter(Contrato.id_solicitante == int(id_solicitante)).all()
+        id_solicitante = int(codigo)
+        contratos = Contrato.query.filter_by(Contrato.id_solicitante == id_solicitante).all()
         return render_template(
             'solicitante_templates/contratos_solicitante.html', 
             codigo = id_solicitante,
@@ -93,16 +93,12 @@ def contratos_solicitante(codigo):
 @contratos.route('/contratos_contratista/<codigo>', methods=['POST'])
 def contratos_contratista(codigo):
     if request.method == 'POST':
-        id_personal = codigo
-
-
-        contratos = Contrato.query.filter(
-            Contrato.id_personal == int(id_personal),
-            Contrato.fecha_firma_solicitante.isnot(None),
+        id_personal = int(codigo)
+        contratos = Contrato.query.filter_by(
+            Contrato.id_personal == id_personal,
+            Contrato.fecha_firma_solicitante != None,
         ).all()
-         
         print("CONTRATOS: ",contratos) 
-         
         return render_template(
             'contratista_templates/contratos_contratista.html', 
             codigo = id_personal,
@@ -114,7 +110,7 @@ def crear_contrato(id_solicitud,codigo,id_personal):
     
     from datetime import datetime
     if request.method == 'POST':
-        id_solicitante = codigo
+        id_solicitante = int(codigo)
         
         nombre_carpeta = "contrato-"+str(id_solicitud)+"-"+str(id_personal)+"-"+str(id_solicitante)
         
